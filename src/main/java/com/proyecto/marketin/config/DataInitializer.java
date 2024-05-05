@@ -28,11 +28,17 @@ public class DataInitializer
            
             
             Perfil administrador1 = new Perfil();
-            administrador1.setNombre("CAJERO");
+            administrador1.setNombre("ADMINISTRADOR");
             perfilRepository.save(administrador1);
             Empleado empleado2 = new Empleado();
-            Set<Perfil> authorities1 = new HashSet<>();
-            authorities1.add(perfilRepository.findByNombre("CAJERO"));
+            Set<Perfil> perfiles = new HashSet<>();
+    		Optional<Perfil> perfilOptional = perfilRepository.findByNombre("ADMINISTRADOR");
+    		if (perfilOptional.isPresent()) {
+    		    Perfil perfilEncontrado = perfilOptional.get();
+    		    perfiles.add(perfilEncontrado);
+    		} else {
+    		    throw new RuntimeException("Error: El perfil no fue encontrado");
+    		}
             empleado2.setUsername("73037571");
             empleado2.setFirstname("Jimmy");
             empleado2.setLastname("Del Águila");

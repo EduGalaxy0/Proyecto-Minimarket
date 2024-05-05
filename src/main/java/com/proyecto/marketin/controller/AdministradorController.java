@@ -18,15 +18,5 @@ public class AdministradorController {
 		return "usuario2";
 		
 	}
-	@GetMapping("/register")
-	public String register(){
-		return "crear-usuario2";
-	}
 	
-	
-	@GetMapping("/editarUsuario")
-	public String editarEmpleado(){
-		
-		return "editar-usuario";
-	}
 }
