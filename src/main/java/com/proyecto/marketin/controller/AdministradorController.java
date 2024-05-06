@@ -15,7 +15,7 @@ public class AdministradorController {
 	
 	@GetMapping("/ListUsuarios")
 	public String showUsers(){
-		return "usuario2";
+		return "usuario";
 		
 	}
 	

@@ -40,63 +40,69 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Seguridad</div>
+                        <div class="nav-link toggle-section" id="seguridadHeading" style="cursor: pointer;">Seguridad</div>
+						<div id="usuariosLinks" style="display: none;">
 						<a class="nav-link" th:href="@{/ListUsuarios}">
 						    <div class="sb-nav-link-icon"><i class="fas fa-lock"></i></div>
 						    Usuarios
 						</a>
-                        <div class="sb-sidenav-menu-heading">Ventas</div>
-                        <a class="nav-link" href="#">
-                            <div class="sb-nav-link-icon"><i class="fas fa-cash-register"></i></div>
-                            Vender
-                        </a>
-                        <a class="nav-link" href="#">
-                            <div class="sb-nav-link-icon"><i class="fas fa-cash-register"></i></div>
-                            Clientes
-                        </a>
-                        <div class="sb-sidenav-menu-heading">Compras</div>
-                        <a class="nav-link" href="#">
-                            <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
-                            Crear Compras
-                        </a>
-                        <a class="nav-link" href="#">
-                            <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
-                            Proveedores
-                        </a>
-                        <div class="sb-sidenav-menu-heading">Mantenimiento</div>
-                        <div class="nav flex-column">
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tools"></i></div>
-                                Categoria
-                            </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tools"></i></div>
-                                Moneda
-                            </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tools"></i></div>
-                                Comprobante
-                            </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tools"></i></div>
-                                Maintenance Module
-                            </a>
-                        </div>
-                        <div class="sb-sidenav-menu-heading">Reportes</div>
-                        <a class="nav-link" href="#">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
-                            Reportes
-                        </a>
-                        <a class="nav-link" href="#">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
-                            Arqueo
-                        </a>
+			            </div>
+			            <div class="nav-link toggle-section" id="seguridadHeading" style="cursor: pointer;">Ventas</div>
+			            <div id="ventasLinks" style="display: none;">
+			                <a class="nav-link" href="#">
+			                    <div class="sb-nav-link-icon"><i class="fas fa-cash-register"></i></div>
+			                    Comprobante
+			                </a>
+			                <ul class="submenu">
+			                    <li><a class="nav-link" th:href="@{/boleta}">Botella</a></li>
+			                    <li><a class="nav-link" th:href="@{/factura}">Factura</a></li>
+			                </ul>
+			            </div>
+			            <div class="nav-link toggle-section" id="seguridadHeading" style="cursor: pointer;">Compras</div>
+			            <div id="comprasLinks" style="display: none;">
+			                <a class="nav-link" th:href="@{/comprar}">
+			                    <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
+			                    Crear Compras
+			                </a>
+			                <a class="nav-link" th:href="@{/proveedores}">
+			                    <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
+			                    Proveedores
+			                </a>
+			            </div>
+						<div class="nav-link toggle-section" id="seguridadHeading" style="cursor: pointer;">Almacen</div>
+						<div id="almacenLinks" style="display: none;">
+						    <a class="nav-link" th:href="@{/productos}">
+						        <div class="sb-nav-link-icon"><i class="fas fa-box-open"></i></div>
+						        Productos
+						    </a>
+						</div>
+			            <div class="nav-link toggle-section" id="seguridadHeading" style="cursor: pointer;">Mantenimiento</div>
+			            <div id="mantenimientoLinks" style="display: none;">
+			                <a class="nav-link" href="#">
+			                    <div class="sb-nav-link-icon"><i class="fas fa-tools"></i></div>
+			                    Categoria
+			                </a>
+			                <a class="nav-link" href="#">
+			                    <div class="sb-nav-link-icon"><i class="fas fa-tools"></i></div>
+			                    Moneda
+			                </a>
+			                <a class="nav-link" href="#">
+			                    <div class="sb-nav-link-icon"><i class="fas fa-tools"></i></div>
+			                    Maintenance Module
+			                </a>
+			            </div>
+			            <div class="nav-link toggle-section" id="seguridadHeading" style="cursor: pointer;">Reportes</div>
+			            <div id="reportesLinks" style="display: none;">
+			                <a class="nav-link" th:href="@{/reportev}">
+			                    <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
+			                    Reportes
+			                </a>
+			                <a class="nav-link" href="#">
+			                    <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
+			                    Arqueo
+			                </a>
+			            </div>
                     </div>
-                </div>
-                <div class="sb-sidenav-footer">
-                    <div class="small">Usuario:</div>
-                    <div id="usuarioActivo"></div>
-    				<div id="rolUsuario"></div>
                 </div>
             </nav>
         </div>
@@ -120,5 +126,6 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
     <script src="js/usuarioActual.js"></script>
+    
 </body>
 </html>

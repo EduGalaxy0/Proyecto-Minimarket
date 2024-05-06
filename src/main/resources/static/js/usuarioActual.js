@@ -26,11 +26,25 @@ if (token) {
 
     document.getElementById('usuarioActivo').textContent = data[0].firstname;
     document.getElementById('rolUsuario').textContent = 'Perfil: ' + rol;
-    console.log('Respuesta del servidor:', data);
+    //console.log('Respuesta del servidor:', data);
     // Aquí puedes hacer lo que necesites con la respuesta, como mostrarla en la interfaz de usuario
   })
   .catch(error => {
     console.error('Error al obtener el empleado:', error);
   });
   
+//Deslizar los modulos
 
+// Obtenemos todos los encabezados de sección
+	    const toggleSections = document.querySelectorAll('.toggle-section');
+	
+	    // Iteramos sobre cada encabezado para agregar un event listener al clic
+	    toggleSections.forEach(section => {
+	        section.addEventListener('click', function() {
+	            // Obtenemos los enlaces dentro de la sección
+	            const links = this.nextElementSibling;
+	
+	            // Toggle la visibilidad de los enlaces
+	            links.style.display = links.style.display === 'none' ? 'block' : 'none';
+	        });
+	    });

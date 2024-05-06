@@ -10903,7 +10903,7 @@ body {
     transform: translateX(0);
   }
   #layoutSidenav #layoutSidenav_content {
-    margin-left: 0;
+    margin-left: 0px;
     transition: margin 0.15s ease-in-out;
   }
   .sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
@@ -10931,7 +10931,9 @@ body {
   overflow-y: auto;
 }
 .sb-nav-fixed #layoutSidenav #layoutSidenav_content {
-  padding-left: 225px;
+  padding-left: 230px;
+  padding-right: 5px;
+  padding-top: 5px;
   top: 56px;
 }
 

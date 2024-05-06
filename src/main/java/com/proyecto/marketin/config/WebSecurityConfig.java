@@ -39,7 +39,7 @@ public class WebSecurityConfig {
 	        						"/v1/css/**",
 	        						"/css/**", "/flags/**","/images/**","/plugins/**","/fonts/**"
 	        					).permitAll();
-							authRequest.requestMatchers("/ListUsuarios/**").hasAuthority("ADMINISTRADOR");
+							authRequest.requestMatchers("/ListUsuarios/**", "/v1/**").hasAuthority("ADMINISTRADOR");
 							authRequest.requestMatchers("/auth/v2/**").hasAnyAuthority("CAJERO","ADMINISTRADOR");
 							authRequest.requestMatchers("/auth/v3/**").hasAnyAuthority("ALMACENERO","ADMINISTRADOR");
 							authRequest.anyRequest().authenticated();})
