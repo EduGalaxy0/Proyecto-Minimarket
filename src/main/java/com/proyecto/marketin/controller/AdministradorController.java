@@ -9,10 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 public class AdministradorController {
 	
-
-
-    
-	
 	@GetMapping("/ListUsuarios")
 	public String showUsers(){
 		return "usuario";
