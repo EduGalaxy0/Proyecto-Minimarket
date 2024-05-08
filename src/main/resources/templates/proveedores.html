@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Proveedores</title>
+	<style>
+	    /* Estilos CSS aquí */
+	</style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenedor principal del formulario -->
+    <div class="container">
+        <!-- Título del formulario -->
+        <h1>Registro de Proveedor</h1>
+        <!-- Formulario de registro -->
+        <form action="procesar_registro.php" method="POST">
+            <!-- Campo para el RUC -->
+            <label for="ruc">RUC:</label>
+            <input type="text" id="ruc" name="ruc" required>
+            
+            <!-- Campo para el nombre -->
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            
+            <!-- Campo para el correo electrónico -->
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" id="correo" name="correo" required>
+            
+            <!-- Campo para el teléfono -->
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" required>
+            
+            <!-- Campo para la dirección -->
+            <label for="direccion">Dirección:</label>
+            <textarea id="direccion" name="direccion" rows="4" required></textarea>
+            
+            <!-- Título para la sección de productos -->
+            <h2>Productos que vende</h2>
+            <!-- Tabla para ingresar productos -->
+            <table>
+                <thead>
+                    <tr>
+                        <!-- Encabezados de la tabla -->
+                        <th>Producto</th>
+                        <th>Uni. Medida</th> <!-- Encabezado para la unidad de medida -->
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody id="productos">
+                    <!-- Fila inicial de la tabla -->
+                    <tr>
+                        <!-- Celdas de la fila -->
+                        <td><input type="text" name="producto[]" placeholder="Nombre del producto" required></td>
+                        <td><input type="text" name="unidad_medida[]" placeholder="Unidad de medida" required></td>
+                        <td><input type="number" name="precio[]" placeholder="Precio del producto" required></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Botón para agregar más productos -->
+            <button type="button" onclick="agregarProducto()">Agregar Producto</button>
+            
+            <!-- Botón para enviar el formulario -->
+            <input type="submit" value="Registrar Proveedor">
+        </form>
+    </div>
+
+    <!-- Script para agregar filas a la tabla -->
+    <script>
+        function agregarProducto() {
+            // Obtener la tabla de productos
+            var table = document.getElementById("productos");
+            // Insertar una nueva fila en la tabla
+            var newRow = table.insertRow();
+            // Insertar celdas en la nueva fila
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            // Agregar campos de entrada a las celdas
+            cell1.innerHTML = '<input type="text" name="producto[]" placeholder="Nombre del producto" required>';
+            cell2.innerHTML = '<input type="text" name="unidad_medida[]" placeholder="Unidad de medida" required>';
+            cell3.innerHTML = '<input type="number" name="precio[]" placeholder="Precio del producto" required>';
+        }
+    </script>
+</body>
+</html>
