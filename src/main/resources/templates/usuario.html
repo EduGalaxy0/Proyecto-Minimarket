@@ -16,20 +16,20 @@
         justify-content: space-between;
     }
 
-    #datatable_empleado .edit-button,
-#datatable_empleado .delete-button{
+    #datatable_empleado .edit-btn,
+#datatable_empleado .delete-btn{
         padding: 5px 10px;
         border: none;
         border-radius: 5px;
         cursor: pointer; 
     }
 
-    #datatable_empleado .edit-button {
+    #datatable_empleado .edit-btn {
         background-color: #ffc107;
         color: black;
     }
 
-    #datatable_empleado .delete-button {
+    #datatable_empleado .delete-btn {
         background-color: #f44336;
         color: black;
     }
@@ -38,7 +38,7 @@
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" th:href="@{/home}">Minimarket</a>
+        <a class="navbar-brand ps-3" th:href="@{/index}">Minimarket</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
 		<!-- Navbar-->
@@ -132,6 +132,7 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
+				
 				<h1 class="mt-4">USUARIOS</h1>
 				<!-- Botón para abrir el modal de creación de usuario -->
 				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#crearUsuarioModal">Crear Usuario</button>
@@ -147,7 +148,7 @@
                       <th class="centered">Apellidos</th>
                       <th class="centered">Correo</th>
                       <th class="centered">Dirección</th>
-                      <th calss="centered">Telefono</th>
+                      <th calss="centered">Teléfono</th>
                       <th calss="centered">Perfil</th>
                       <th class="centered">Opciones</th>
                     </tr>
@@ -164,7 +165,11 @@
 				                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				            </div>
 				            <div class="modal-body">
-				                <form id="userForm">
+				                <form id="userForm" method="dialog">
+									<div class="mb-3">
+				                        <label for="dni" class="form-label">DNI:</label>
+				                        <input type="text" class="form-control" id="username" required>
+				                    </div>
 				                    <div class="mb-3">
 				                        <label for="nombre" class="form-label">Nombre:</label>
 				                        <input type="text" class="form-control" id="firstname" required>
@@ -173,10 +178,7 @@
 				                        <label for="apellido" class="form-label">Apellido:</label>
 				                        <input type="text" class="form-control" id="lastname" required>
 				                    </div>
-				                    <div class="mb-3">
-				                        <label for="dni" class="form-label">DNI:</label>
-				                        <input type="text" class="form-control" id="username" required>
-				                    </div>
+				                    
 				                    <div class="mb-3">
 				                        <label for="correo" class="form-label">Correo:</label>
 				                        <input type="email" class="form-control" id="email" required>
@@ -219,6 +221,10 @@
 				                <form id="editUserForm">
 				                    <!-- Campos de edición del usuario -->
 				                    <div class="mb-3">
+				                        <label for="edit-dni" class="form-label">DNI:</label>
+				                        <input type="text" class="form-control" id="username-edit" disabled>
+				                    </div>
+				                    <div class="mb-3">
 				                        <label for="edit-nombre" class="form-label">Nombre:</label>
 				                        <input type="text" class="form-control" id="firstname-edit">
 				                    </div>
@@ -226,10 +232,7 @@
 				                        <label for="edit-apellido" class="form-label">Apellido:</label>
 				                        <input type="text" class="form-control" id="lastname-edit">
 				                    </div>
-				                    <div class="mb-3">
-				                        <label for="edit-dni" class="form-label">DNI:</label>
-				                        <input type="text" class="form-control" id="username-edit">
-				                    </div>
+				                    
 				                    <div class="mb-3">
 				                        <label for="edit-correo" class="form-label">Correo:</label>
 				                        <input type="email" class="form-control" id="email-edit">
@@ -244,7 +247,7 @@
 				                    </div>
 				                    <div class="mb-3">
 				                        <label for="edit-perfil" class="form-label">Perfil:</label>
-				                        <select id="perfil" name="perfil">
+				                        <select id="perfil-edit" name="perfil">
 							
 			        				</select>
 				                    </div>
@@ -264,88 +267,9 @@
     <script src="assets/demo/chart-bar-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
-	<script src="js/ListUsers.js"></script>
 	<script src="js/usuarioActual.js"></script>
 	<script src="js/crearUsuario.js"></script>
+	<script src="js/editarUsuario.js"></script>
 	
-    <script>
-
-		    // Cerrar el modal
-		    var modal = new bootstrap.Modal(document.getElementById('btnCrearUsuario'));
-		    modal.hide();
-		
-		
-		// Evento de clic en los botones de eliminar usuario y editar usuario
-		document.addEventListener('click', function(event) {
-		    if (event.target.classList.contains('delete-btn')) {
-		        // Mostrar un mensaje de confirmación antes de eliminar el usuario
-		        var confirmation = confirm('¿Desea Eliminar el Usuario?');
-		        if (confirmation) {
-		            var row = event.target.closest('tr');
-		            row.remove();
-		        }
-		    } else if (event.target.classList.contains('edit-btn')) {
-		        // Abrir el modal de edición del usuario
-		        var row = event.target.closest('tr');
-		        var cells = row.querySelectorAll('td');
-		
-		        // Establecer la clase "editing" en la fila actual para identificarla durante la edición
-		        row.classList.add('editing'); 
-		
-		        // Mostrar el modal de edición del usuario
-		        var modal = new bootstrap.Modal(document.getElementById('editarUsuarioModal'));
-		        modal.show();
-		    }
-		});
-		
-		document.getElementById('editUserForm').addEventListener('submit', function(event) {
-		    event.preventDefault(); // Evitar que se recargue la página
-		    // Obtener los valores del formulario de edición
-		    var nombre = document.getElementById('edit-nombre').value;
-		    var apellido = document.getElementById('edit-apellido').value;
-		    var dni = document.getElementById('edit-dni').value;
-		    var correo = document.getElementById('edit-correo').value;
-		    var direccion = document.getElementById('edit-direccion').value;
-		    var telefono = document.getElementById('edit-telefono').value;
-		    var perfil = document.getElementById('edit-perfil').value;
-		
-		    // Obtener el índice de la fila que se está editando
-		    var rowIndex = document.querySelector('#userTableBody tr.editing').rowIndex;
-		
-		    // Actualizar la fila correspondiente en la tabla con los nuevos datos
-		    var cells = document.querySelectorAll(`#userTableBody tr:nth-child(${rowIndex}) td`);
-		    cells[1].textContent = nombre;
-		    cells[2].textContent = apellido;
-		    cells[3].textContent = dni;
-		    cells[4].textContent = correo;
-		    cells[5].textContent = direccion;
-		    cells[6].textContent = telefono;
-		    cells[7].textContent = perfil;
-		
-		    // Cerrar el modal
-		    var modal = new bootstrap.Modal(document.getElementById('editarUsuarioModal'));
-		    modal.hide();
-		    // Eliminar la clase "editing" de la fila editada
-		    document.querySelector('#userTableBody tr.editing').classList.remove('editing');
-		});
-		
-        // Obtenemos todos los encabezados de sección
-        const toggleSections = document.querySelectorAll('.toggle-section');
-
-        // Iteramos sobre cada encabezado para agregar un event listener al clic
-        toggleSections.forEach(section => {
-            section.addEventListener('click', function() {
-                // Obtenemos los enlaces dentro de la sección
-                const links = this.nextElementSibling;
-
-                // Toggle la visibilidad de los enlaces
-                if (links.style.display === 'none') {
-                    links.style.display = 'block';
-                } else {
-                    links.style.display = 'none';
-                }
-            });
-        });
-    </script>
 </body>
 </html>
