@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
                               "";
 
         // Mostrar el valor seleccionado en la consola
-        //console.log('Perfil Value:', perfilValue);
+        console.log('Perfil Value:', perfilValue);
     });
 
     // Agregar un evento de clic al botón de enviar
@@ -168,8 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     body: JSON.stringify(userData)
 })		
-			var modal = new bootstrap.Modal(document.getElementById('crearUsuarioModal'));
-		    modal.hide();
+			
 			location.reload();
 		    
         }

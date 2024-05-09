@@ -2,17 +2,18 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Obtener el formulario y el botón
     const submitButton = document.getElementById("btnCrearUsuario-edit");
+    const selectElement1 = document.getElementById('perfil-edit');
     
-    let perfilSelecValue;
+    let perfilSelecValue1;
 
     
     // Agregar un evento de cambio al select
-    selectElement.addEventListener('change', () => {
+    selectElement1.addEventListener('change', () => {
         // Obtener el valor seleccionado cada vez que cambia el select
-         perfilSelecValue = selectElement.value;
+         perfilSelecValue1 = selectElement1.value;
 
         // Mostrar el valor seleccionado en la consola
-        //console.log('Perfil Value:', perfilSelecValue);
+        console.log('Perfil Value:', perfilSelecValue1);
     });
 
     // Agregar un evento de clic al botón de enviar
@@ -45,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
     }
-		
+		alert(perfilSelecValue1);
 		if (shouldSubmit) {
 		
 			// Crear el objeto de usuario en formato JSON
@@ -57,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
             //password: password,
             address: address,
             numberphone: numberphone,
-            perfil: perfilSelecValue
+            perfil: perfilSelecValue1
         };
         
             // Enviar los datos al servidor
