@@ -16,6 +16,8 @@ public class HomeController {
 
 	}
 	
+	
+	
 	@GetMapping("/index")
 	public String home(){
 		return "index";
@@ -23,6 +25,30 @@ public class HomeController {
 	
 	
 	
+	@GetMapping("/boleta")
+	public String boleta(){
+		return "boleta";
+	}
+	@GetMapping("/factura")
+	public String factura(){
+		return "factura";
+	}
 	
-
+	
+	
+	@GetMapping("/comprar")
+	public String comprar(){
+		return "comprar";
+	}
+	@GetMapping("/proveedores")
+	public String proveedores(){
+		return "proveedores";
+	}
+	
+	
+	
+	@GetMapping("/productos")
+	public String productos(){
+		return "productos";
+	}
 }
