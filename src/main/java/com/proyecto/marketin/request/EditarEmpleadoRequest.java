@@ -1,4 +1,4 @@
-package com.proyecto.marketin.controller;
+package com.proyecto.marketin.request;
 
 
 public class EditarEmpleadoRequest {

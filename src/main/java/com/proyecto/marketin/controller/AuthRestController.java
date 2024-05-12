@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.proyecto.marketin.model.Empleado;
 import com.proyecto.marketin.repository.EmpleadoRepository;
+import com.proyecto.marketin.request.AuthResponse;
+import com.proyecto.marketin.request.LoginRequest;
 import com.proyecto.marketin.service.AuthService;
 
 import java.util.Collections;

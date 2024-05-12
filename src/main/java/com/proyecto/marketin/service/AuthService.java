@@ -13,10 +13,10 @@ import com.proyecto.marketin.model.Empleado;
 import com.proyecto.marketin.model.Perfil;
 import com.proyecto.marketin.repository.EmpleadoRepository;
 import com.proyecto.marketin.repository.PerfilRepository;
-import com.proyecto.marketin.controller.AuthResponse;
-import com.proyecto.marketin.controller.EditarEmpleadoRequest;
-import com.proyecto.marketin.controller.LoginRequest;
-import com.proyecto.marketin.controller.RegisterRequest;
+import com.proyecto.marketin.request.AuthResponse;
+import com.proyecto.marketin.request.EditarEmpleadoRequest;
+import com.proyecto.marketin.request.LoginRequest;
+import com.proyecto.marketin.request.RegisterRequest;
 
 
 
