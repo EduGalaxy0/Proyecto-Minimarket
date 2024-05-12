@@ -144,10 +144,10 @@
 						</div>
 			            <div class="nav-link toggle-section" id="seguridadHeading" style="cursor: pointer;">Mantenimiento</div>
 			            <div id="mantenimientoLinks" style="display: none;">
-			                <a class="nav-link" href="#">
-			                    <div class="sb-nav-link-icon"><i class="fas fa-tools"></i></div>
-			                    Categoria
-			                </a>
+							<a class="nav-link" href="/categoria">
+							    <div class="sb-nav-link-icon"><i class="fas fa-tools"></i></div>
+							    Categoria
+							</a>
 			                <a class="nav-link" href="#">
 			                    <div class="sb-nav-link-icon"><i class="fas fa-tools"></i></div>
 			                    Moneda
@@ -159,10 +159,10 @@
 			            </div>
 			            <div class="nav-link toggle-section" id="seguridadHeading" style="cursor: pointer;">Reportes</div>
 			            <div id="reportesLinks" style="display: none;">
-			                <a class="nav-link" th:href="@{/reportev}">
-			                    <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
-			                    Reportes
-			                </a>
+							<a class="nav-link" th:href="@{/rventas}">
+							    <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
+							    Reportes Ventas
+							</a>
 			                <a class="nav-link" href="#">
 			                    <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
 			                    Arqueo
@@ -240,24 +240,7 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
     <script src="js/usuarioActual.js"></script>
-	
-	<!-- Script para agregar filas a la tabla -->
-	<script>
-	    function agregarProducto() {
-	        // Obtener la tabla de productos
-	        var table = document.getElementById("productos");
-	        // Insertar una nueva fila en la tabla
-	        var newRow = table.insertRow();
-	        // Insertar celdas en la nueva fila
-	        var cell1 = newRow.insertCell(0);
-	        var cell2 = newRow.insertCell(1);
-	        var cell3 = newRow.insertCell(2);
-	        // Agregar campos de entrada a las celdas
-	        cell1.innerHTML = '<input type="text" name="producto[]" placeholder="Nombre del producto" required>';
-	        cell2.innerHTML = '<input type="text" name="unidad_medida[]" placeholder="Unidad de medida" required>';
-	        cell3.innerHTML = '<input type="number" name="precio[]" placeholder="Precio del producto" required>';
-	    }
-	</script>
+	<script	src="js/proveedores.js"></script>
     
 </body>
 </html>
