@@ -1,6 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Ventas</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        input[type="date"] {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+    </style>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -107,14 +148,26 @@
             </nav>
         </div>
         <div id="layoutSidenav_content">
-            <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">Minimarket J&R</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Interfaz Inicial</li>
-                    </ol>
-                    <!-- Content for each module can be added here -->
-                </div>
+		    <div class="container">
+		        <h1>Reporte de Ventas</h1>
+		        <form id="filterForm">
+		            <label for="fecha">Filtrar por fecha:</label>
+		            <input type="date" id="fecha" name="fecha">
+		            <button type="submit">Filtrar</button>
+		        </form>
+		        <table id="salesTable">
+		            <thead>
+		                <tr>
+		                    <th>N° Boleta o Factura</th>
+		                    <th>Total Vendido</th>
+		                    <th>Fecha Emitida</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		                <!-- Aquí se cargarán los datos de las ventas -->
+		            </tbody>
+		        </table>
+		    </div>
             </main>
         </div>
     </div>

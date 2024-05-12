@@ -1,6 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorías de Productos</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            margin-bottom: 10px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+        }
+    </style>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -108,13 +146,30 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">Minimarket J&R</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Interfaz Inicial</li>
-                    </ol>
-                    <!-- Content for each module can be added here -->
-                </div>
+			    <h1>Categorías de Productos</h1>
+			    <button onclick="mostrarModal()">Crear Categoría</button>
+			    <table>
+			        <thead>
+			            <tr>
+			                <th>ID</th>
+			                <th>Nombre</th>
+			                <th>Descripcion</th>
+			            </tr>
+			        </thead>
+			        <tbody id="categorias">
+			            <!-- Aquí se cargarán dinámicamente las categorías -->
+			        </tbody>
+			    </table>
+			
+			    <!-- Modal para crear categoría -->
+			    <div id="modalCrearCategoria" class="modal">
+			        <div class="modal-content">
+			            <h2>Nueva Categoría</h2>
+			            <input type="text" id="nombreCategoria" placeholder="Nombre">
+			            <input type="text" id="descipcionCategoria" placeholder="Medida">
+			            <button onclick="crearCategoria()">Crear</button>
+			        </div>
+			    </div>
             </main>
         </div>
     </div>
@@ -127,5 +182,45 @@
     <script src="js/datatables-simple-demo.js"></script>
     <script src="js/usuarioActual.js"></script>
     
+        <script>
+        // Función para mostrar el modal
+        function mostrarModal() {
+            const modal = document.getElementById('modalCrearCategoria');
+            modal.style.display = 'block';
+        }
+
+        // Función para ocultar el modal
+        function ocultarModal() {
+            const modal = document.getElementById('modalCrearCategoria');
+            modal.style.display = 'none';
+        }
+
+        // Función para crear una nueva categoría
+        function crearCategoria() {
+            const nombre = document.getElementById('nombreCategoria').value;
+            const medida = document.getElementById('medidaCategoria').value;
+
+            // Validar que se ingresen los datos
+            if (nombre.trim() === '' || descripcion.trim() === '') {
+                alert('Por favor ingrese el nombre y la medida de la categoría.');
+                return;
+            }
+
+            // Agregar la nueva categoría a la tabla
+            const categoriasContainer = document.getElementById('categorias');
+            const id = categoriasContainer.getElementsByTagName('tr').length + 1;
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${id}</td>
+                <td>${nombre}</td>
+                <td>${medida}</td>
+            `;
+            categoriasContainer.appendChild(row);
+
+            // Ocultar el modal después de crear la categoría
+            ocultarModal();
+        }
+    </script>
 </body>
 </html>

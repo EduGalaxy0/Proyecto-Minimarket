@@ -47,8 +47,22 @@ public class HomeController {
 	
 	
 	
+	@GetMapping("/categoria")
+	public String categorias(){
+		return "categoria";
+	}
+	
+	
+	
 	@GetMapping("/productos")
 	public String productos(){
 		return "productos";
+	}
+	
+	
+	
+	@GetMapping("/rventas")
+	public String rventas(){
+		return "rventas";
 	}
 }
