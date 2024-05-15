@@ -54,13 +54,6 @@ public class HomeController {
 	
 	
 	
-	@GetMapping("/productos")
-	public String productos(){
-		return "productos";
-	}
-	
-	
-	
 	@GetMapping("/rventas")
 	public String rventas(){
 		return "rventas";

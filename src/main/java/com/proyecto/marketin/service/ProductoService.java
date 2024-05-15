@@ -1,15 +1,9 @@
 package com.proyecto.marketin.service;
 
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-
 import org.springframework.stereotype.Service;
 
 import com.proyecto.marketin.model.Categoria;
-import com.proyecto.marketin.model.Empleado;
-import com.proyecto.marketin.model.Perfil;
 import com.proyecto.marketin.model.Producto;
 import com.proyecto.marketin.repository.CategoriaRepository;
 import com.proyecto.marketin.repository.ProductoRepository;
@@ -48,48 +42,31 @@ public class ProductoService {
 	public void editarProducto(AgregarProductoRequest request){
 		Producto producto = productoRepository.findByNombre(request.getNombre()).orElse(null);
         if (producto != null) {
-        	
-        	Set<Perfil> perfil = new HashSet<>();
-        	if(request.getPerfil()!=null) {
+
+        	if(request.getCategoria()!=null) {
         		
-        		Optional<Perfil> perfilOptional = perfilRepository.findByNombre(request.getPerfil());
-        		if (perfilOptional.isPresent()) {
-        		    Perfil perfilEncontrado = perfilOptional.get();
-        		    perfil.add(perfilEncontrado);
-        		} else {
-        		    throw new RuntimeException("Error: El perfil no fue encontrado");
-        		}
+        		Categoria categoria = categoriaRepository.findByNombre(request.getCategoria());	
+        		    producto.setCategoria(categoria);
+ 		
         	}
 
-	    		if(request.getFirstname()!=null) {
-	        		empleado.setFirstname(request.getFirstname());
+	    		if(request.getCantidad()!=null) {
+	        		producto.setCantidad(request.getCantidad());
 	        	}
     		
-	    		if(request.getLastname()!=null) {
-	        		empleado.setLastname(request.getLastname());
+	    		if(request.getDescripcion()!=null) {
+	        		producto.setDescripcion(request.getDescripcion());
 	        	}
-	    		
-	    		if(request.getEmail()!=null) {
-            		empleado.setEmail(request.getEmail());
-            	}
-	    		
-	    		if(request.getNumberphone()!=null) {
-            		empleado.setNumberphone(request.getNumberphone());
-            	}
-	    		
-            	if(request.getAddress()!=null) {
-            		empleado.setAddress(request.getAddress());
-            	}
-            	
-            	if(request.getPassword()!=null) {
-            		empleado.setPassword(request.getPassword());
-            	}
-            	
-            	if(request.getPerfil()!=null) {
-            		empleado.setPerfiles(perfil);
-            	}
-            	
-                empleadoRepository.save(empleado);
-	}
 
+                productoRepository.save(producto);
+        }
+
+	}
+	
+	public void eliminarProducto(Integer id) {
+		if (productoRepository.existsById(id)) {	
+            throw new RuntimeException("Error: El producto con el id no existe.");
+        }
+		productoRepository.deleteById(id);
+	}
 }
