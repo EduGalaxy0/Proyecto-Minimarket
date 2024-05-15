@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
     }
-		alert(perfilSelecValue1);
+		
 		if (shouldSubmit) {
 		
 			// Crear el objeto de usuario en formato JSON
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			    body: JSON.stringify(userData)
 			})			
 			
-			alert("Grandioso, se editó el usuario");
+			alert("Se acaba de editar el usuario");
 			location.reload();	
 			
 		   
