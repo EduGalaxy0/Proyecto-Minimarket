@@ -30,7 +30,7 @@ public class Empleado implements UserDetails{
 	
 	
 	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO)
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Basic
 	@Column(nullable = false)

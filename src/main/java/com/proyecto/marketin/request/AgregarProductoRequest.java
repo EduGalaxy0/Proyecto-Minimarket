@@ -1,9 +1,12 @@
 package com.proyecto.marketin.request;
 
+import java.math.BigDecimal;
+
 public class AgregarProductoRequest {
 		String nombre;
 		Integer cantidad;
 		String categoria;
+		BigDecimal precio;
 		String descripcion;
 		
 		public String getDescripcion() {
@@ -29,5 +32,11 @@ public class AgregarProductoRequest {
 		}
 		public void setCategoria(String categoria) {
 			this.categoria = categoria;
+		}
+		public BigDecimal getPrecio() {
+			return precio;
+		}
+		public void setPrecio(BigDecimal precio) {
+			this.precio = precio;
 		}
 }

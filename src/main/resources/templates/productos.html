@@ -229,23 +229,21 @@
 				        <button onclick="guardarEdicion()">Guardar</button>
 				    </div>
 				</div>
-				
-				<table id="tablaProductos">
-				    <!-- Encabezado de la tabla -->
-				    <thead>
-				        <tr>
-				            <th>ID</th>
-				            <th>Nombre</th>
-				            <th>Precio</th>
-				            <th>Cantidad</th>
-				            <th>Categoría</th>
-				            <th>Acciones</th>
-				        </tr>
-				    </thead>
-				    <tbody>
-				        <!-- Filas de productos -->
-				    </tbody>
-				</table>
+				<table id="tablaProductos" class="table table table-striped">
+                        <caption></caption>
+                  <thead>
+                    <tr>
+                      <th class="centered">ID</th>
+                      <th class="centered">Nombre</th>
+                      <th class="centered">Precio</th>
+                      <th class="centered">Cantidad</th>
+                      <th class="centered">Categoria</th>
+                      <th calss="centered">Descripción</th>
+                      <th class="centered">Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tableBody_producto"></tbody>
+                </table>
             </main>
         </div>
     </div>

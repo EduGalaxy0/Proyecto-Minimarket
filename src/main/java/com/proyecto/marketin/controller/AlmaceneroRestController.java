@@ -1,8 +1,13 @@
 package com.proyecto.marketin.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.proyecto.marketin.model.Producto;
+import com.proyecto.marketin.repository.ProductoRepository;
 
 
 
@@ -11,8 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class AlmaceneroRestController {
 	
-	@GetMapping(value = "almacenero")
-	public String Almacenero() {
-		return "Todas las funcionalidades del Almacenero";
+	private final ProductoRepository productoRepository;
+	
+	public AlmaceneroRestController(ProductoRepository productoRepository) {
+		super();
+		this.productoRepository = productoRepository;
+	}
+
+	@GetMapping(value = "productos")
+	public List<Producto> getAllProductos() {
+		return productoRepository.findAll();
 	}
 }

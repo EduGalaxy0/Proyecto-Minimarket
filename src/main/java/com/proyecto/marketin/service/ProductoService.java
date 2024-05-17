@@ -34,7 +34,8 @@ public class ProductoService {
 		categoria = categoriaRepository.findByNombre(request.getCategoria());
 				producto.setNombre(request.getNombre());
 				producto.setCantidad(request.getCantidad());
-				producto.setCategoria(categoria);
+				producto.setPrecio(request.getPrecio());
+				producto.setCategoria_id(categoria);
 				producto.setDescripcion(request.getDescripcion());
 		productoRepository.save(producto);
 		
@@ -46,7 +47,7 @@ public class ProductoService {
         	if(request.getCategoria()!=null) {
         		
         		Categoria categoria = categoriaRepository.findByNombre(request.getCategoria());	
-        		    producto.setCategoria(categoria);
+        		    producto.setCategoria_id(categoria);
  		
         	}
 
@@ -56,6 +57,9 @@ public class ProductoService {
     		
 	    		if(request.getDescripcion()!=null) {
 	        		producto.setDescripcion(request.getDescripcion());
+	        	}
+	    		if(request.getPrecio()!=null) {
+	        		producto.setPrecio(request.getPrecio());
 	        	}
 
                 productoRepository.save(producto);
