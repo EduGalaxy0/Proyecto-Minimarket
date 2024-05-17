@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     data.forEach(user => {
                         const row = document.createElement('tr');
                         row.innerHTML = `
+                        	<td>${user.id}</td>
                             <td>${user.username}</td>
                             <td>${user.firstname}</td>
                             <td>${user.lastname}</td>
@@ -37,8 +38,16 @@ document.addEventListener("DOMContentLoaded", function () {
 		        // Mostrar un mensaje de confirmación antes de eliminar el usuario
 		        var confirmation = confirm('¿Desea Eliminar el Usuario?');
 		        if (confirmation) {
-					
-		            var row = event.target.closest('tr');
+					var row = event.target.closest('tr');
+					var cells = row.querySelectorAll('td:nth-child(1)');
+					const id = cells[0].textContent;
+					const requestOptions = {
+					  method: "DELETE"	  
+					};
+					fetch("http://localhost:8080/v1/eliminarEmpleado/" + id , requestOptions)
+					  .then((response) => response.text())
+					  .then((result) => console.log(result))
+					  .catch((error) => console.error(error));
 		            row.remove();
 		            
 		        }
@@ -46,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		    } else if (event.target.classList.contains('edit-btn')) {
 		        // Abrir el modal de edición del usuario
 		        var row = event.target.closest('tr');
-		        var cells = row.querySelectorAll('td:nth-child(1), td:nth-child(2), td:nth-child(3), td:nth-child(4), td:nth-child(5), td:nth-child(6)');
+		        var cells = row.querySelectorAll('td:nth-child(2), td:nth-child(3), td:nth-child(4), td:nth-child(5), td:nth-child(6), td:nth-child(7)');
 				
 		
 		        // Establecer la clase "editing" en la fila actual para identificarla durante la edición

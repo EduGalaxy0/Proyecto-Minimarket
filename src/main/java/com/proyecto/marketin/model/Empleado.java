@@ -28,7 +28,7 @@ import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "empleados", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
-@SQLDelete(sql="UPDATE empleados SET estado = 0 WHERE username=?")
+@SQLDelete(sql="UPDATE empleados SET estado = 0 WHERE id=?")
 @Where(clause = "estado = 1")
 public class Empleado implements UserDetails{
 	
