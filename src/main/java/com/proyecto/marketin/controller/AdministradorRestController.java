@@ -3,9 +3,9 @@ package com.proyecto.marketin.controller;
 
 import java.util.List;
 
-
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,5 +73,10 @@ public class AdministradorRestController {
 	@PostMapping("/editarUsuario")
 	public void editarEmpleado(@RequestBody EditarEmpleadoRequest request) {
 		authService.editarEmpleado(request);
+	}
+	
+	@DeleteMapping("/eliminarEmpleado/{id}")
+	public void eliminarEmpleado(@PathVariable("id") Integer id) {
+		authService.eliminarEmpleado(id);
 	}
 }

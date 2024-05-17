@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,6 +28,8 @@ import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "empleados", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
+@SQLDelete(sql="UPDATE empleados SET estado = 0 WHERE username=?")
+@Where(clause = "estado = 1")
 public class Empleado implements UserDetails{
 	
 	
@@ -42,7 +46,8 @@ public class Empleado implements UserDetails{
 	private String email;
 	private String address;
 	private String numberphone;
-	
+	private Integer estado = 1;
+
 	@ManyToMany(fetch = FetchType.EAGER, targetEntity = Perfil.class, cascade = CascadeType.MERGE)
 	@JoinTable(name = "Empleado_Perfil", joinColumns = @JoinColumn(name = "id_Username"), inverseJoinColumns = @JoinColumn(name="id_Perfil"))
 	private Set<Perfil> perfiles;
@@ -144,6 +149,13 @@ public class Empleado implements UserDetails{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Integer getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Integer estado) {
+		this.estado = estado;
 	}
 
 

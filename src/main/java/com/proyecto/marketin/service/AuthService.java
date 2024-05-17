@@ -154,7 +154,9 @@ public class AuthService {
         } 
     }
 
-	
+	public void eliminarEmpleado(Integer id) {
+		empleadoRepository.deleteById(id);
+	}
 	
 
 }

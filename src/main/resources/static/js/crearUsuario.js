@@ -37,9 +37,12 @@ document.addEventListener("DOMContentLoaded", function () {
 		        // Mostrar un mensaje de confirmación antes de eliminar el usuario
 		        var confirmation = confirm('¿Desea Eliminar el Usuario?');
 		        if (confirmation) {
+					
 		            var row = event.target.closest('tr');
 		            row.remove();
+		            
 		        }
+		        
 		    } else if (event.target.classList.contains('edit-btn')) {
 		        // Abrir el modal de edición del usuario
 		        var row = event.target.closest('tr');
