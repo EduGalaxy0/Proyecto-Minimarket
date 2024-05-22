@@ -1,4 +1,4 @@
-package com.proyecto.marketin.service;
+package com.proyecto.marketin.request;
 
 public class AgregarPerfilEmpleadoRequest {
 	public AgregarPerfilEmpleadoRequest(String username, String perfil) {

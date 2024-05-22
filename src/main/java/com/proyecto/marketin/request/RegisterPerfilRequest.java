@@ -1,4 +1,4 @@
-package com.proyecto.marketin.service;
+package com.proyecto.marketin.request;
 
 public class RegisterPerfilRequest {
 

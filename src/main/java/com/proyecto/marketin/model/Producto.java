@@ -1,6 +1,7 @@
 package com.proyecto.marketin.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -33,11 +35,16 @@ public class Producto {
 
 	@Column(name = "descripcion")
     private String descripcion;
+	@Column(name = "marca")
+    private String marca;
 
 
 	@ManyToOne
     @JoinColumn(name = "categoria_id") 
     private Categoria categoria_id;
+	
+	@OneToMany(mappedBy = "producto")
+    private List<ProductoVendido> productosVendidos;
 	
 	public Categoria getCategoria_id() {
 		return categoria_id;
@@ -86,6 +93,22 @@ public class Producto {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public List<ProductoVendido> getProductosVendidos() {
+		return productosVendidos;
+	}
+
+	public void setProductosVendidos(List<ProductoVendido> productosVendidos) {
+		this.productosVendidos = productosVendidos;
 	}
     
 }
