@@ -15,11 +15,11 @@ import com.proyecto.marketin.model.Empleado;
 import com.proyecto.marketin.model.Perfil;
 import com.proyecto.marketin.repository.EmpleadoRepository;
 import com.proyecto.marketin.repository.PerfilRepository;
+import com.proyecto.marketin.request.AgregarPerfilEmpleadoRequest;
 import com.proyecto.marketin.request.EditarEmpleadoRequest;
+import com.proyecto.marketin.request.RegisterPerfilRequest;
 import com.proyecto.marketin.request.RegisterRequest;
-import com.proyecto.marketin.service.AgregarPerfilEmpleadoRequest;
 import com.proyecto.marketin.service.AuthService;
-import com.proyecto.marketin.service.RegisterPerfilRequest;
 
 
 @RestController

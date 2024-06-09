@@ -11,8 +11,8 @@
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
-<body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<body class="sb-nav-fixed" >
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" th:fragment="navbar-configuration">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="/index">Minimarket J&R</a>
         <!-- Sidebar Toggle-->
@@ -36,7 +36,7 @@
 		</div>
     </nav>
     <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
+        <div id="layoutSidenav_nav" th:fragment="menu-sidenav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
@@ -49,11 +49,11 @@
 			            </div>
 			            <div class="nav-link toggle-section" id="seguridadHeading" style="cursor: pointer;">Ventas</div>
 			            <div id="ventasLinks" style="display: none;">
-			                <a class="nav-link" href="#">
+			                <a class="nav-link" href="/caja">
 			                    <div class="sb-nav-link-icon"><i class="fas fa-cash-register"></i></div>
-			                    Comprobante
+			                    Caja
 			                </a>
-			                <ul class="submenu">
+								<ul class="submenu" id="ulBoletaFactura">
 			                    <li><a class="nav-link" th:href="@{/boleta}">Boleta</a></li>
 			                    <li><a class="nav-link" th:href="@{/factura}">Factura</a></li>
 			                </ul>
@@ -113,7 +113,7 @@
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Interfaz Inicial</li>
                     </ol>
-                    <!-- Content for each module can be added here -->
+                    <!-- Content for each module can be added here-->
                 </div>
             </main>
         </div>
@@ -124,6 +124,9 @@
     <script src="assets/demo/chart-area-demo.js"></script>
     <script src="assets/demo/chart-bar-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
     <script src="js/datatables-simple-demo.js"></script>
     <script src="js/usuarioActual.js"></script>
     

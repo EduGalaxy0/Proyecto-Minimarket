@@ -9,7 +9,7 @@ import com.proyecto.marketin.model.ProductoVendido;
 
 public interface ProductoVendidoRepository extends JpaRepository<ProductoVendido, Long>{
 	
-	List<ProductoVendido> findByVentaId(Long idVenta);
+	ProductoVendido findByVentaId(Long idVenta);
 
     List<ProductoVendido> findByProductoId(Long idProducto);
 

@@ -9,9 +9,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "clientes")
+@Table(name = "clientes", uniqueConstraints = {@UniqueConstraint(columnNames = {"documento"})})
 public class Cliente {
 	
 	public Cliente() {
@@ -20,8 +21,12 @@ public class Cliente {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "nombre", nullable = false)
+	
+	@Column(name = "documento", nullable = false)
+    private String documento;
+	
+    
+	@Column(name = "nombre", nullable = false)
     private String nombre;
 
     @Column(name = "direccion", nullable = false)
@@ -29,12 +34,26 @@ public class Cliente {
 
     @Column(name = "telefono")
     private String telefono;
+    
+    @Column(name = "email")
+    private String email;
+    
+    @Column(name = "ruc")
+    private String ruc;
+    
 
     @OneToMany(mappedBy = "cliente")
     private List<Venta> ventas;
 
 	
+    public String getDocumento() {
+		return documento;
+	}
 
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -73,5 +92,21 @@ public class Cliente {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getRuc() {
+		return ruc;
+	}
+
+	public void setRuc(String ruc) {
+		this.ruc = ruc;
 	}
 }

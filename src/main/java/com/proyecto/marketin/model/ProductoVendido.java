@@ -33,7 +33,15 @@ public class ProductoVendido {
 
     @Column(name = "precio_venta", nullable = false)
     private BigDecimal precioVenta;
-
+    
+    @Column(name = "descuento")
+    private BigDecimal descuento;
+    
+    @Column(name = "impuesto")
+    private BigDecimal impuesto;
+    
+    @Column(name = "sub_total")
+    private BigDecimal subTotal;
 	
 
 	public Venta getVenta() {
@@ -74,5 +82,36 @@ public class ProductoVendido {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public BigDecimal getDescuento() {
+		return descuento;
+	}
+
+	public void setDescuento(BigDecimal descuento) {
+		this.descuento = descuento;
+	}
+
+	public BigDecimal getImpuesto() {
+		return impuesto;
+	}
+
+	public void setImpuesto(BigDecimal impuesto) {
+		this.impuesto = impuesto;
+	}
+
+	public BigDecimal getSubTotal() {
+		return subTotal;
+	}
+
+	public void setSubTotal(BigDecimal subTotal) {
+		this.subTotal = subTotal;
+	}
+
+	@Override
+	public String toString() {
+		return "ProductoVendido [id=" + id + ", venta=" + venta + ", producto=" + producto + ", cantidad=" + cantidad
+				+ ", precioVenta=" + precioVenta + ", descuento=" + descuento + ", impuesto=" + impuesto + ", subTotal="
+				+ subTotal + "]";
 	}
 }

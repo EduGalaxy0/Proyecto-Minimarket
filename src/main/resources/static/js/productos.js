@@ -1,10 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
+            const currentDate = new Date();
+            const isoDateString = currentDate.toISOString();
+            console.log(isoDateString);
             fetch('http://localhost:8080/v3/productos')
                 .then(response => response.json())
                 .then(data => {
                     const usersTable = document.getElementById('tablaProductos');
                     const tbody = usersTable.getElementsByTagName('tbody')[0];
-
+					//console.log(data);
                     data.forEach(producto => {
                         const row = document.createElement('tr');
                         row.innerHTML = `
@@ -12,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <td>${producto.nombre}</td>
                             <td>${producto.precio}</td>
                             <td>${producto.cantidad}</td>
-                            <td>${producto.categoria}</td>
+                            <td>${producto.categoria_id.nombre}</td>
                             <td>${producto.descripcion}</td>
                             <td>
 								<div class="action-buttons">
@@ -25,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     
             });
         })
-                .catch(error => console.error('Error al obtener usuarios:', error));
+                .catch(error => console.error('Error al obtener productos:', error));
         });
         
      // Evento de clic en los botones de eliminar usuario y editar usuario

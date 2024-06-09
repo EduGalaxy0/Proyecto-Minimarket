@@ -1,4 +1,4 @@
-/*package com.proyecto.marketin.repository;
+package com.proyecto.marketin.repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,4 +15,3 @@ public interface CajaRepository extends JpaRepository<Caja, Long>{
 
     List<Caja> findByFechaCierreBetween(LocalDateTime fechaInicio, LocalDateTime fechaFin);
 }
-*/

@@ -35,6 +35,7 @@ public class Producto {
 
 	@Column(name = "descripcion")
     private String descripcion;
+	
 	@Column(name = "marca")
     private String marca;
 

@@ -57,3 +57,10 @@ if (token) {
             localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
         });
     }
+const idCaja = localStorage.getItem('cajaId');
+	if(idCaja){
+		$("#ulBoletaFactura").show();
+	}
+	else{
+		$("#ulBoletaFactura").hide	();
+	}

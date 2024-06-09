@@ -170,6 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
             address: address,
             numberphone: numberphone,
             perfil: parseInt(perfilValue)
+            
         };
         
             // Enviar los datos al servidor

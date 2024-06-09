@@ -1,6 +1,7 @@
 package com.proyecto.marketin.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -13,4 +14,7 @@ public interface ClientesRepository extends JpaRepository<Cliente, Long>{
     List<Cliente> findByDireccion(String direccion);
 
     List<Cliente> findByTelefono(String telefono);
+
+	Optional<Cliente> findByDocumento(String documento);
+
 }
