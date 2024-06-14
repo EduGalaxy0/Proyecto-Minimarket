@@ -10,6 +10,43 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <style>
+		.image-container {
+    position: relative;
+    background-image: url('images/pantalla.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 5px;
+}
+
+.overlay {
+    position: relative;
+    left: 0;
+    width: 97%;
+    height: 60vh;
+    margin:auto;
+    background-color: rgba(255, 255, 255, 0.5); /* Transparencia */
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.overlay h2, .overlay p {
+    margin: 0;
+    padding: 0;
+}
+
+.overlay p {
+    margin-top: 10px;
+}
+	</style>
 </head>
 <body class="sb-nav-fixed" >
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" th:fragment="navbar-configuration">
@@ -109,11 +146,18 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Minimarket J&R</h1>
+					<div class="image-container">
+                    <h1 class="mt-4" style="color: white;">Minimarket J&R</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Interfaz Inicial</li>
+                        <li style="color: white;">Interfaz Inicial</li>
                     </ol>
-                    <!-- Content for each module can be added here-->
+                    <div class="image-container2">
+			        <div class="overlay">
+			            <h2>¡Bienvenido al Sistema de Gestión de Minimarket!</h2>
+			            <p>Nos complace darte la bienvenida a nuestra plataforma. Aquí encontrarás todo lo necesario para gestionar eficientemente tu minimarket. Desde el control de inventarios hasta la gestión de ventas y clientes, nuestro sistema está diseñado para facilitar tus operaciones diarias y ayudarte a brindar el mejor servicio a tus clientes..</p>
+			        </div>
+                    </div>
+			    </div>
                 </div>
             </main>
         </div>
