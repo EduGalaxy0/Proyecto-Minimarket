@@ -31,163 +31,131 @@ document.addEventListener("DOMContentLoaded", function () {
                 .catch(error => console.error('Error al obtener productos:', error));
         });
         
-     // Evento de clic en los botones de eliminar usuario y editar usuario
-		document.addEventListener('click', function(event) {
-		    if (event.target.classList.contains('delete-btn')) {
-		        // Mostrar un mensaje de confirmación antes de eliminar el usuario
-		        var confirmation = confirm('¿Desea Eliminar el Usuario?');
-		        if (confirmation) {
-		            var row = event.target.closest('tr');
-		            row.remove();
-		        }
-		    } else if (event.target.classList.contains('edit-btn')) {
-		        // Abrir el modal de edición del usuario
-		        var row = event.target.closest('tr');
-		        var cells = row.querySelectorAll('td:nth-child(1), td:nth-child(2), td:nth-child(3), td:nth-child(4), td:nth-child(5), td:nth-child(6)');
-				
-		
-		        // Establecer la clase "editing" en la fila actual para identificarla durante la edición
-		        //row.classList.add('editing'); 
-				// Assuming the order of cells matches the form input IDs:
-				const firstnameEdit = document.getElementById('firstname-edit');
-				const lastnameEdit = document.getElementById('lastname-edit');
-				const usernameEdit = document.getElementById('username-edit');
-				const emailEdit = document.getElementById('email-edit');
-				const addressEdit = document.getElementById('address-edit');
-				const numberphoneEdit = document.getElementById('numberphone-edit');
-				
-				// Assign values to inputs based on cell index (assuming correct mapping):
-				firstnameEdit.value = cells[1].textContent; // First cell for "Nombre"
-				lastnameEdit.value = cells[2].textContent;  // Second cell for "Apellido"
-				usernameEdit.value = cells[0].textContent;   // Third cell for "DNI"
-				emailEdit.value = cells[3].textContent;      // Fourth cell for "Correo"
-				addressEdit.value = cells[4].textContent;    // Fifth cell for "Dirección"
-				numberphoneEdit.value = cells[5].textContent; // Sixth cell for "Número Telefonico"
-		        // Mostrar el modal de edición del usuario
-		        var modal = new bootstrap.Modal(document.getElementById('editarUsuarioModal'));
-		        modal.show();
-		        
-		        document.getElementById('editUserForm').addEventListener('submit', function(event) {
-		    event.preventDefault(); // Evitar que se recargue la página
-
-		    // Cerrar el modal
-		    var modal = new bootstrap.Modal(document.getElementById('editarUsuarioModal'));
-		    modal.hide();
-		    
-		});
-		    }
-		});
-
-// Función para mostrar el modal
-function mostrarModal() {
-    document.getElementById("modalAgregar").style.display = "block";
-}
-
-// Función para cerrar el modal
-function cerrarModal() {
-    document.getElementById("modalAgregar").style.display = "none";
-    document.getElementById("modalEliminar").style.display = "none";
-    document.getElementById("modalEditar").style.display = "none";
-}
-
-// Función para agregar un producto a la tabla
-function agregarProducto() {
-    // Obtener valores de los campos del modal
-    var nombre = document.getElementById("nombreProducto").value;
-    var precio = document.getElementById("precioProducto").value;
-    var cantidad = document.getElementById("cantidadProducto").value;
-    var categoria = document.getElementById("categoriaProducto").value;
-
-    // Crear una nueva fila en la tabla con los datos del producto
-    var tabla = document.getElementById("tablaProductos").getElementsByTagName('tbody')[0];
-    var fila = tabla.insertRow();
-
-    var celdaId = fila.insertCell(0);
-    var celdaNombre = fila.insertCell(1);
-    var celdaPrecio = fila.insertCell(2);
-    var celdaCantidad = fila.insertCell(3);
-    var celdaCategoria = fila.insertCell(4);
-    var celdaAcciones = fila.insertCell(5);
-
-    celdaId.innerHTML = idContador;
-    celdaNombre.innerHTML = nombre;
-    celdaPrecio.innerHTML = precio;
-    celdaCantidad.innerHTML = cantidad;
-    celdaCategoria.innerHTML = categoria;
-    celdaAcciones.innerHTML = '<button class="btn-editar" onclick="mostrarModalEditar(this)">Editar</button>' +
-                              '<button class="btn-eliminar" onclick="mostrarModalEliminar(this)">Eliminar</button>';
-
-    // Incrementar el contador de ID para el próximo producto
-    idContador++;
-
-    // Cerrar el modal después de agregar el producto
-    cerrarModal();
-}
-
-// Función para mostrar el modal de confirmación de eliminación
-function mostrarModalEliminar(btnEliminar) {
-    document.getElementById("modalEliminar").style.display = "block";
-    // Guardar la fila a la que pertenece el botón de eliminar
-    filaAEliminar = btnEliminar.parentNode.parentNode;
-}
-
-// Función para confirmar eliminación de un producto
-function eliminarProductoConfirmado() {
-    filaAEliminar.parentNode.removeChild(filaAEliminar);
-    // Cerrar el modal después de eliminar el producto
-    cerrarModal();
-}
-
-// Función para mostrar el modal de edición de producto
-function mostrarModalEditar(btnEditar) {
-    filaAEditar = btnEditar.parentNode.parentNode;
-    var nombre = filaAEditar.cells[1].innerText;
-    var precio = filaAEditar.cells[2].innerText;
-    var cantidad = filaAEditar.cells[3].innerText;
-    var categoria = filaAEditar.cells[4].innerText;
-
-    // Poblar los campos del modal con la información del producto a editar
-    document.getElementById("nombreProductoEdit").value = nombre;
-    document.getElementById("precioProductoEdit").value = precio;
-    document.getElementById("cantidadProductoEdit").value = cantidad;
-    document.getElementById("categoriaProductoEdit").value = categoria;
-
-    document.getElementById("modalEditar").style.display = "block";
-}
-
-// Función para guardar la edición del producto
-function guardarEdicion() {
-    var nombreEdit = document.getElementById("nombreProductoEdit").value;
-    var precioEdit = document.getElementById("precioProductoEdit").value;
-    var cantidadEdit = document.getElementById("cantidadProductoEdit").value;
-    var categoriaEdit = document.getElementById("categoriaProductoEdit").value;
-
-    // Actualizar los datos en la fila de la tabla
-    filaAEditar.cells[1].innerText = nombreEdit;
-    filaAEditar.cells[2].innerText = precioEdit;
-    filaAEditar.cells[3].innerText = cantidadEdit;
-    filaAEditar.cells[4].innerText = categoriaEdit;
-
-    // Cerrar el modal después de guardar la edición
-    cerrarModal();
-}
-
-// Función para buscar productos
-function buscar() {
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("tablaProductos");
-    tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[1]; // La columna de nombre
-        if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
+        document.addEventListener('DOMContentLoaded', function() {
+            let products = [
+                { id: 1, nombre: 'Galleta Oreo', precio: 1, cantidad: 100, categoria: 'Galletas', descripcion: 'Descripción 1' },
+                { id: 2, nombre: 'Chicle Huevito', precio: 0.20, cantidad: 200, categoria: 'Golosinas', descripcion: 'Descripción 2' },
+                // Add more products as needed
+            ];
+        
+            const rowsPerPage = 5;
+            let currentPage = 1;
+        
+            const productsTbody = document.getElementById('tableBody_producto');
+            const prevPageBtn = document.getElementById('prevPageBtn');
+            const nextPageBtn = document.getElementById('nextPageBtn');
+            const pageIndicator = document.getElementById('pageIndicator');
+            const modalAgregar = document.getElementById('modalAgregar');
+            const modalEliminar = document.getElementById('modalEliminar');
+            const modalEditar = document.getElementById('modalEditar');
+            const formAgregarProducto = document.getElementById('formAgregarProducto');
+            const formEditarProducto = document.getElementById('formEditarProducto');
+        
+            let editingProductId = null;
+            let deletingProductId = null;
+        
+            function renderTable() {
+                productsTbody.innerHTML = '';
+                const start = (currentPage - 1) * rowsPerPage;
+                const end = start + rowsPerPage;
+                const currentProducts = products.slice(start, end);
+        
+                currentProducts.forEach(product => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td class="text-center">${product.id}</td>
+                        <td class="text-center">${product.nombre}</td>
+                        <td class="text-center">${product.precio}</td>
+                        <td class="text-center">${product.cantidad}</td>
+                        <td class="text-center">${product.categoria}</td>
+                        <td class="text-center">${product.descripcion}</td>
+                        <td class="text-center">
+                            <button class="btn btn-warning btn-sm" onclick="mostrarModalEditar(${product.id})">Editar</button>
+                            <button class="btn btn-danger btn-sm" onclick="mostrarModalEliminar(${product.id})">Eliminar</button>
+                        </td>
+                    `;
+                    productsTbody.appendChild(row);
+                });
+        
+                pageIndicator.textContent = `Página ${currentPage}`;
+                updatePagination();
             }
-        }
-    }
-}
+        
+            function updatePagination() {
+                prevPageBtn.disabled = currentPage === 1;
+                nextPageBtn.disabled = currentPage * rowsPerPage >= products.length;
+            }
+        
+            prevPageBtn.addEventListener('click', function() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderTable();
+                }
+            });
+        
+            nextPageBtn.addEventListener('click', function() {
+                if (currentPage * rowsPerPage < products.length) {
+                    currentPage++;
+                    renderTable();
+                }
+            });
+        
+            window.mostrarModalAgregar = function() {
+                modalAgregar.style.display = 'block';
+            }
+        
+            window.cerrarModal = function() {
+                modalAgregar.style.display = 'none';
+                modalEliminar.style.display = 'none';
+                modalEditar.style.display = 'none';
+            }
+        
+            window.mostrarModalEliminar = function(id) {
+                deletingProductId = id;
+                modalEliminar.style.display = 'block';
+            }
+        
+            window.eliminarProductoConfirmado = function() {
+                products = products.filter(p => p.id !== deletingProductId);
+                renderTable();
+                cerrarModal();
+            }
+        
+            window.mostrarModalEditar = function(id) {
+                editingProductId = id;
+                const product = products.find(p => p.id === id);
+                document.getElementById('nombreProductoEdit').value = product.nombre;
+                document.getElementById('precioProductoEdit').value = product.precio;
+                document.getElementById('cantidadProductoEdit').value = product.cantidad;
+                document.getElementById('categoriaProductoEdit').value = product.categoria;
+                document.getElementById('descripcionProductoEdit').value = product.descripcion;
+                modalEditar.style.display = 'block';
+            }
+        
+            window.guardarEdicion = function() {
+                const product = products.find(p => p.id === editingProductId);
+                product.nombre = document.getElementById('nombreProductoEdit').value;
+                product.precio = parseFloat(document.getElementById('precioProductoEdit').value);
+                product.cantidad = parseInt(document.getElementById('cantidadProductoEdit').value);
+                product.categoria = document.getElementById('categoriaProductoEdit').value;
+                product.descripcion = document.getElementById('descripcionProductoEdit').value;
+                renderTable();
+                cerrarModal();
+            }
+        
+            window.agregarProducto = function() {
+                const newProduct = {
+                    id: products.length + 1,
+                    nombre: document.getElementById('nombreProducto').value,
+                    precio: parseFloat(document.getElementById('precioProducto').value),
+                    cantidad: parseInt(document.getElementById('cantidadProducto').value),
+                    categoria: document.getElementById('categoriaProducto').value,
+                    descripcion: document.getElementById('descripcionProducto').value
+                };
+                products.push(newProduct);
+                renderTable();
+                cerrarModal();
+            }
+        
+            renderTable();
+        });

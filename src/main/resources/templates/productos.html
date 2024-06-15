@@ -5,63 +5,46 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Tabla de Productos</title>
 	<style>
-	    table {
-	        width: 100%;
-	        border-collapse: collapse;
-	    }
-	    th, td {
-	        border: 1px solid black;
-	        padding: 8px;
-	        text-align: left;
-	    }
-	    th {
-	        background-color: #f2f2f2;
-	    }
-	    /* Estilos para el modal */
-	    .modal {
-	        display: none; /* Ocultar el modal por defecto */
-	        position: fixed;
-	        z-index: 1;
-	        left: 0;
-	        top: 0;
-	        width: 100%;
-	        height: 100%;
-	        overflow: auto;
-	        background-color: rgba(0, 0, 0, 0.4);
-	    }
-	
-	    .modal-content {
-	        background-color: #fefefe;
-	        margin: 15% auto;
-	        padding: 20px;
-	        border: 1px solid #888;
-	        width: 80%;
-	    }
-	
-	    /* Estilos para el botón "Agregar" */
-	    .btn-agregar {
-	        margin-bottom: 10px;
-	    }
-	
-	    /* Estilos para los botones "Editar" y "Eliminar" */
-	    .btn-editar, .btn-eliminar {
-	        padding: 6px 10px;
-	        margin-right: 5px;
-	        cursor: pointer;
-	    }
-	
-	    /* Estilos para la barra de búsqueda */
-	    .search-container {
-	        margin-bottom: 10px;
-	    }
-	    .search-container input[type=text] {
-	        padding: 6px;
-	        margin-right: 5px;
-	        width: 200px;
-	    }
-	    .search-container button {
-	        padding: 6px 10px;
-	    }
+	   #myInput {
+    width: 200px;
+    margin-right: 10px;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+    padding-top: 60px; 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}	
 	</style>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -79,80 +62,143 @@
         <div th:insert="index :: menu-sidenav"></div>
         <div id="layoutSidenav_content">
             <main>
-				<h2>Tabla de Productos</h2>
-				<!-- Barra de búsqueda -->
-				<div class="search-container">
-				    <input type="text" id="myInput" placeholder="Buscar...">
-				    <button onclick="buscar()">Buscar</button>
+				<div class="container mt-5">
+					<h2 class="text-center">Tabla de Productos</h2>
+			
+					<!-- Barra de búsqueda -->
+					<div class="search-container form-inline my-3">
+						<input type="text" id="myInput" class="form-control mr-2" placeholder="Buscar...">
+						<button class="btn btn-primary" onclick="buscar()">Buscar</button>
+					</div>
+			
+					<button class="btn btn-success mb-3" onclick="mostrarModalAgregar()">Agregar Producto</button>
+			
+					<!-- Tabla de productos -->
+					<table id="tablaProductos" class="table table-striped">
+						<thead class="thead-dark">
+							<tr>
+								<th class="text-center">ID</th>
+								<th class="text-center">Nombre</th>
+								<th class="text-center">Precio</th>
+								<th class="text-center">Cantidad</th>
+								<th class="text-center">Categoría</th>
+								<th class="text-center">Descripción</th>
+								<th class="text-center">Opciones</th>
+							</tr>
+						</thead>
+						<tbody id="tableBody_producto">
+							<!-- Filas de productos se insertarán aquí mediante JavaScript -->
+						</tbody>
+					</table>
+			
+					<!-- Paginación -->
+					<div class="pagination">
+						<button id="prevPageBtn" class="btn btn-primary">&laquo; Anterior</button>
+						<span id="pageIndicator" class="mx-2">Página 1</span>
+						<button id="nextPageBtn" class="btn btn-primary">Siguiente &raquo;</button>
+					</div>
 				</div>
-				
-				<button class="btn-agregar" onclick="mostrarModal()">Agregar Producto</button>
-				
+			
 				<!-- Modal para agregar producto -->
 				<div id="modalAgregar" class="modal">
-				    <div class="modal-content">
-				        <span onclick="cerrarModal()" style="float: right; cursor: pointer;">&times;</span>
-				        <h3>Agregar Producto</h3>
-				        <!-- Campos para agregar productos -->
-				        <p>Nombre: <input id="nombreProducto" type="text"></p>
-				        <p>Precio: <input id="precioProducto" type="text"></p>
-				        <p>Cantidad: <input id="cantidadProducto" type="number" min="1" value="1"></p>
-				        <p>Categoría:
-				            <select id="categoriaProducto">
-				                <option value="galletas">Galletas</option>
-				                <option value="golosinas">Golosinas</option>
-				                <option value="bebidas">Bebidas</option>
-				                <option value="embutidos">Embutidos</option>
-				            </select>
-				        </p>
-				        <button onclick="agregarProducto()">Agregar</button>
-				    </div>
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Agregar Producto</h5>
+								<button type="button" class="close" onclick="cerrarModal()">&times;</button>
+							</div>
+							<div class="modal-body">
+								<form id="formAgregarProducto">
+									<div class="form-group">
+										<label for="nombreProducto">Nombre:</label>
+										<input id="nombreProducto" type="text" class="form-control" required>
+									</div>
+									<div class="form-group">
+										<label for="precioProducto">Precio:</label>
+										<input id="precioProducto" type="number" class="form-control" required>
+									</div>
+									<div class="form-group">
+										<label for="cantidadProducto">Cantidad:</label>
+										<input id="cantidadProducto" type="number" class="form-control" min="1" value="1" required>
+									</div>
+									<div class="form-group">
+										<label for="categoriaProducto">Categoría:</label>
+										<select id="categoriaProducto" class="form-control">
+											<option value="galletas">Galletas</option>
+											<option value="golosinas">Golosinas</option>
+											<option value="bebidas">Bebidas</option>
+											<option value="embutidos">Embutidos</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="descripcionProducto">Descripción:</label>
+										<textarea id="descripcionProducto" class="form-control" required></textarea>
+									</div>
+									<button type="button" class="btn btn-primary" onclick="agregarProducto()">Agregar</button>
+								</form>
+							</div>
+						</div>
+					</div>
 				</div>
-				
+			
 				<!-- Modal para confirmar eliminación -->
 				<div id="modalEliminar" class="modal">
-				    <div class="modal-content">
-				        <h3>¿Desea eliminar el producto?</h3>
-				        <button onclick="eliminarProductoConfirmado()">Confirmar</button>
-				        <button onclick="cerrarModal()">Cancelar</button>
-				    </div>
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Confirmar Eliminación</h5>
+								<button type="button" class="close" onclick="cerrarModal()">&times;</button>
+							</div>
+							<div class="modal-body">
+								<p>¿Desea eliminar el producto?</p>
+								<button class="btn btn-danger" onclick="eliminarProductoConfirmado()">Confirmar</button>
+								<button class="btn btn-secondary" onclick="cerrarModal()">Cancelar</button>
+							</div>
+						</div>
+					</div>
 				</div>
-				
+			
 				<!-- Modal para editar producto -->
 				<div id="modalEditar" class="modal">
-				    <div class="modal-content">
-				        <span onclick="cerrarModal()" style="float: right; cursor: pointer;">&times;</span>
-				        <h3>Editar Producto</h3>
-				        <!-- Campos para editar productos -->
-				        <p>Nombre: <input id="nombreProductoEdit" type="text"></p>
-				        <p>Precio: <input id="precioProductoEdit" type="text"></p>
-				        <p>Cantidad: <input id="cantidadProductoEdit" type="number" min="1" value="1"></p>
-				        <p>Categoría:
-				            <select id="categoriaProductoEdit">
-				                <option value="galletas">Galletas</option>
-				                <option value="golosinas">Golosinas</option>
-				                <option value="bebidas">Bebidas</option>
-				                <option value="embutidos">Embutidos</option>
-				            </select>
-				        </p>
-				        <button onclick="guardarEdicion()">Guardar</button>
-				    </div>
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Editar Producto</h5>
+								<button type="button" class="close" onclick="cerrarModal()">&times;</button>
+							</div>
+							<div class="modal-body">
+								<form id="formEditarProducto">
+									<div class="form-group">
+										<label for="nombreProductoEdit">Nombre:</label>
+										<input id="nombreProductoEdit" type="text" class="form-control" required>
+									</div>
+									<div class="form-group">
+										<label for="precioProductoEdit">Precio:</label>
+										<input id="precioProductoEdit" type="number" class="form-control" required>
+									</div>
+									<div class="form-group">
+										<label for="cantidadProductoEdit">Cantidad:</label>
+										<input id="cantidadProductoEdit" type="number" class="form-control" min="1" value="1" required>
+									</div>
+									<div class="form-group">
+										<label for="categoriaProductoEdit">Categoría:</label>
+										<select id="categoriaProductoEdit" class="form-control">
+											<option value="galletas">Galletas</option>
+											<option value="golosinas">Golosinas</option>
+											<option value="bebidas">Bebidas</option>
+											<option value="embutidos">Embutidos</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="descripcionProductoEdit">Descripción:</label>
+										<textarea id="descripcionProductoEdit" class="form-control" required></textarea>
+									</div>
+									<button type="button" class="btn btn-primary" onclick="guardarEdicion()">Guardar</button>
+								</form>
+							</div>
+						</div>
+					</div>
 				</div>
-				<table id="tablaProductos" class="table table table-striped">
-                        <caption></caption>
-                  <thead>
-                    <tr>
-                      <th class="centered">ID</th>
-                      <th class="centered">Nombre</th>
-                      <th class="centered">Precio</th>
-                      <th class="centered">Cantidad</th>
-                      <th class="centered">Categoria</th>
-                      <th calss="centered">Descripción</th>
-                      <th class="centered">Opciones</th>
-                    </tr>
-                  </thead>
-                  <tbody id="tableBody_producto"></tbody>
-                </table>
             </main>
         </div>
     </div>

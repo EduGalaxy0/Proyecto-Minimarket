@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
                             <td>${user.perfiles[0].nombre}</td>
                             <td>
 								<div class="action-buttons">
-	                                <button class="edit-btn">Editar</button>
-	                                <button class="delete-btn">Eliminar</button>
+	                                <button class="btn btn-warning btn-sm" id="edit-btn">Editar</button>
+	                                <button class="btn btn-danger btn-sm" id="delete-btn">Eliminar</button>
 	                            </div>
 							</td>
                         `;
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
      // Evento de clic en los botones de eliminar usuario y editar usuario
 		document.addEventListener('click', function(event) {
-		    if (event.target.classList.contains('delete-btn')) {
+		    if (event.target.id === 'delete-btn') {
 		        // Mostrar un mensaje de confirmación antes de eliminar el usuario
 		        var confirmation = confirm('¿Desea Eliminar el Usuario?');
 		        if (confirmation) {
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		            
 		        }
 		        
-		    } else if (event.target.classList.contains('edit-btn')) {
+		    } else if (event.target.id === 'edit-btn') {
 		        // Abrir el modal de edición del usuario
 		        var row = event.target.closest('tr');
 		        var cells = row.querySelectorAll('td:nth-child(2), td:nth-child(3), td:nth-child(4), td:nth-child(5), td:nth-child(6), td:nth-child(7)');
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		        
 		        document.getElementById('editUserForm').addEventListener('submit', function(event) {
 		    event.preventDefault(); // Evitar que se recargue la página
-
+              
 		    // Cerrar el modal
 		    var modal = new bootstrap.Modal(document.getElementById('editarUsuarioModal'));
 		    modal.hide();
