@@ -21,7 +21,9 @@
 .action-buttons button {
     margin-right: 5px; /* Margen entre los botones */
 }
-
+.pagination .btn, .pagination span {
+            font-size: 0.925rem; /* Tamaño de fuente más pequeño */
+        }
 	</style>>
 </head>
 <body class="sb-nav-fixed">
@@ -36,11 +38,11 @@
 					<!-- Botón para abrir el modal de creación de usuario -->
 					<button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#crearUsuarioModal">Crear Usuario</button>
 					
-					<div class="d-flex justify-content-between mb-3">
+					<div class="d-flex justify-content-between">
 						<!-- Botón de buscar -->
-						<div class="d-flex justify-content-between mb-3">
+						<div class="d-flex justify-content-evenly mb-0">
 							<input type="text" id="inputBuscar" class="form-control" placeholder="Buscar...">
-							<button class="btn btn-outline-secondary" type="button">
+							<button class="btn btn-outline-primary " type="button">
 								<i class="bi bi-search"></i> <!-- Icono de búsqueda de Bootstrap Icons -->
 							</button>
 						</div>
@@ -69,6 +71,11 @@
 							</thead>
 							<tbody id="tableBody_empleado"></tbody>
 						</table>
+						<div class="pagination justify-content-center	">
+							<button id="prevPageBtn" class="btn btn-primary">&laquo; Anterior</button>
+							<span id="pageIndicator" class="mx-2">Página 1</span>
+							<button id="nextPageBtn" class="btn btn-primary">Siguiente &raquo;</button>
+						</div>
 					</div>
 			
 					<!-- Modal de Creación de Usuario -->

@@ -29,10 +29,12 @@
 
 .bg-login {
 
-	background-color: rgb(59, 59, 59)!important;
-
+	background-image: url("../images/login2.jpg") !important;
+    background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center center; /* Centra la imagen */
+	
 }
-
 
 
 
