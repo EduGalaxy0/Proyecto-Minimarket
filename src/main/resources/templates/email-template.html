@@ -32,12 +32,18 @@
         }
         .btn-reset {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 15px 30px;
             margin-top: 20px;
             background-color: #007bff;
             color: white;
             text-decoration: none;
             border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .btn-reset:hover {
+            background-color: #0056b3;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
@@ -47,10 +53,10 @@
             <h1>Restablecer Contraseña</h1>
         </div>
         <div class="email-body">
-            <p>Hola,</p>
+            <h3><span>Hola, </span><span th:text="${username}"></span></h3>
             <p>Hemos recibido una solicitud para restablecer la contraseña de tu cuenta. Si no solicitaste este cambio, puedes ignorar este correo.</p>
             <p>Para restablecer tu contraseña, haz clic en el siguiente enlace:</p>
-            <a th:href="@{${resetLink}}" class="btn-reset">Restablecer Contraseña</a>
+            <a th:href="@{${url}}" class="btn-reset"><span>Restablecer Contraseña</span></h3></a>
             <p>Este enlace caducará en 24 horas.</p>
             <p>Gracias,<br>El equipo de soporte</p>
         </div>
