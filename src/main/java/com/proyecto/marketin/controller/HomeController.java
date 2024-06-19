@@ -58,4 +58,8 @@ public class HomeController {
 	public String rventas(){
 		return "rventas";
 	}
+	@GetMapping("/rinventario")
+	public String rinventario(){
+		return "rinventario";
+	}
 }
