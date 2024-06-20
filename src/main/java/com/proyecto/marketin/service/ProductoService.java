@@ -24,29 +24,33 @@ public class ProductoService {
 	}
 
 
-	public void nuevoProducto(AgregarProductoRequest request) {
+	 public Producto nuevoProducto(AgregarProductoRequest request) {
+	        if (productoRepository.existsByNombre(request.getNombre())) {
+	            throw new RuntimeException("Error: El producto con este nombre ya existe.");
+	        }
 
-		Producto producto = new Producto();
-		if (productoRepository.existsByNombre(request.getNombre())) {	
-            throw new RuntimeException("Error: El producto con este nombre ya existe.");
-        }
-		Categoria categoria = new Categoria();
-		categoria = categoriaRepository.findByNombre(request.getCategoria());
-				producto.setNombre(request.getNombre());
-				producto.setCantidad(request.getCantidad());
-				producto.setPrecio(request.getPrecio());
-				producto.setCategoria_id(categoria);
-				producto.setDescripcion(request.getDescripcion());
-		productoRepository.save(producto);
-		
-	}
+	        Categoria categoria = categoriaRepository.findByNombre(request.getCategoria())
+	                .orElseThrow(() -> new RuntimeException("Error: La categoría especificada no existe."));
+
+	        Producto producto = new Producto();
+	        producto.setNombre(request.getNombre());
+	        producto.setPrecio(request.getPrecio());
+	        producto.setCantidad(request.getCantidad());
+	        producto.setCategoria_id(categoria);
+	        producto.setMarca(request.getMarca());
+	        producto.setDescripcion(request.getDescripcion());
+
+	        productoRepository.save(producto);
+
+	        return producto;
+	    }
 	public void editarProducto(AgregarProductoRequest request){
 		Producto producto = productoRepository.findByNombre(request.getNombre()).orElse(null);
         if (producto != null) {
 
         	if(request.getCategoria()!=null) {
         		
-        		Categoria categoria = categoriaRepository.findByNombre(request.getCategoria());	
+        		Categoria categoria = categoriaRepository.findByNombre(request.getCategoria()).orElseThrow();	
         		    producto.setCategoria_id(categoria);
  		
         	}
@@ -68,7 +72,7 @@ public class ProductoService {
 	}
 	
 	public void eliminarProducto(Integer id) {
-		if (productoRepository.existsById(id)) {	
+		if (!productoRepository.existsById(id)) {	
             throw new RuntimeException("Error: El producto con el id no existe.");
         }
 		productoRepository.deleteById(id);

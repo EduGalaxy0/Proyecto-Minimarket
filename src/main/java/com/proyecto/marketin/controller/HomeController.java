@@ -62,4 +62,8 @@ public class HomeController {
 	public String rinventario(){
 		return "rinventario";
 	}
+	@GetMapping("/restablecerc")
+	public String restablecerc(){
+		return "restablecerPassword";
+	}
 }

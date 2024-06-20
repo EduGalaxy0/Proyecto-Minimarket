@@ -8,7 +8,16 @@ public class AgregarProductoRequest {
 		String categoria;
 		BigDecimal precio;
 		String descripcion;
+		String marca;
 		
+		
+		
+		public String getMarca() {
+			return marca;
+		}
+		public void setMarca(String marca) {
+			this.marca = marca;
+		}
 		public String getDescripcion() {
 			return descripcion;
 		}

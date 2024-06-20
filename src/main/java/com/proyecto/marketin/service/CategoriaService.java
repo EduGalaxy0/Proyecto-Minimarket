@@ -29,14 +29,14 @@ public class CategoriaService {
 		if (!categoriaRepository.existsByNombre(request.getNombre())) {	
             throw new RuntimeException("Error: La categoria que quiere editar no existe.");
         }
-		Categoria categoria = categoriaRepository.findByNombre(request.getNombre());
+		Categoria categoria = categoriaRepository.findByNombre(request.getNombre()).orElseThrow();
 		categoria.setNombre(request.getOtronombre());
 	
 	}
-	public void eliminarCategoria(String nombre) {
-		if (categoriaRepository.existsByNombre(nombre)) {	
-            throw new RuntimeException("Error: La categoria con este nombre ya existe.");
+	public void eliminarCategoria(Integer id) {
+		if (!categoriaRepository.existsById(id)) {	
+            throw new RuntimeException("Error: La categoria con este nombre no existe.");
         }
-		categoriaRepository.deleteByNombre(nombre);
+		categoriaRepository.deleteById(id);
 	}
 }

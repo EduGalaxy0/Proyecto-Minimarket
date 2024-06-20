@@ -23,55 +23,77 @@
 <body class="bg-login">
   <!--start wrapper-->
   <div class="wrapper">
-    
-       <!--start content-->
-       <main class="authentication-content mt-5">
-        <div class="container-fluid">
-         <div class="row">
+    <!--start content-->
+    <main class="authentication-content mt-5">
+      <div class="container-fluid">
+        <div class="row">
           <div class="col-12 col-lg-4 mx-auto">
+            <!-- Login Card -->
             <div class="card shadow rounded-5 overflow-hidden">
-                  <div class="card-body p-4 p-sm-5">
-                    <h5 class="card-title">Iniciar Sesión</h5>
-                    <form class="form-body" method="post" id="loginForm">
-                      <div class="login-separater text-center mb-4"> <span>Minimarket J&R</span>
-                        <hr>
-                      </div>
-                        <div class="row g-3">
-                          <div class="col-12">
-                            <label for="inputEmailAddress" class="form-label">DNI</label>
-                            <div class="ms-auto position-relative">
-                              <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-person-fill"></i></div>
-                              <input type="text" class="form-control radius-30 ps-5" id="username" placeholder="DNI">
-                            </div>
-                          </div>
-                          <div class="col-12">
-                            <label for="inputChoosePassword" class="form-label">Contraseña</label>
-                            <div class="ms-auto position-relative">
-                              <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-lock-fill"></i></div>
-                              <input type="password" class="form-control radius-30 ps-5" id="password" placeholder="Contraseña">
-                            </div>
-                          </div>
-                          <div class="col-6">
-                           
-                          </div>
-                          
-                          </div>
-                          <div class="col-12">
-                            <div class="d-grid">
-                              <button id="btnLogin" type="submit" class="btn btn-primary radius-30">Ingresar</button>
-                            </div>
-                          </div>
+              <div class="card-body p-4 p-sm-5">
+                <h5 class="card-title">Iniciar Sesión</h5>
+                <form class="form-body" method="post" id="loginForm">
+                  <div class="login-separater text-center mb-4">
+                    <span>Minimarket J&R</span>
+                    <hr>
+                  </div>
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label for="inputEmailAddress" class="form-label">DNI</label>
+                      <div class="ms-auto position-relative">
+                        <div class="position-absolute top-50 translate-middle-y search-icon px-3">
+                          <i class="bi bi-person-fill"></i>
                         </div>
-                    </form>
-                 </div>
+                        <input type="text" class="form-control radius-30 ps-5" id="username" placeholder="DNI">
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label for="inputChoosePassword" class="form-label">Contraseña</label>
+                      <div class="ms-auto position-relative">
+                        <div class="position-absolute top-50 translate-middle-y search-icon px-3">
+                          <i class="bi bi-lock-fill"></i>
+                        </div>
+                        <input type="password" class="form-control radius-30 ps-5" id="password" placeholder="Contraseña">
+                      </div>
+                    </div>
+                    <div class="col-12 text-center">
+                      <a th:href="@{/restablecer}" id="forgotPasswordLink" class="text-primary">¿Olvidaste tu contraseña?</a>
+                    </div>
+                    <div class="col-12">
+                      <div class="d-grid">
+                        <button id="btnLogin" type="submit" class="btn btn-primary radius-30">Ingresar</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
+
+            <!-- Reset Password Card -->
+            <div class="card shadow rounded-5 overflow-hidden d-none" id="resetPasswordCard">
+              <div class="card-body p-4 p-sm-5">
+                <h5 class="card-title text-center">Restablecer Contraseña</h5>
+                <form id="resetForm">
+                  <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="email" placeholder="Ingrese su correo electrónico" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+                </form>
+                <div id="confirmationMessage" class="alert alert-success mt-3 d-none">
+                  Un enlace para restablecer su contraseña ha sido enviado a su correo electrónico.
+                </div>
+                <div class="text-center mt-3">
+                  <a href="#" id="backToLoginLink" class="text-primary">Volver a Iniciar Sesión</a>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
-        </div>
-       </main>
-        
-       <!--end page main-->
-
+      </div>
+    </main>
+    <!--end page main-->
   </div>
   <!--end wrapper-->
 
@@ -79,6 +101,7 @@
   <!--plugins-->
   <script src="js/jquery.min.js"></script>
   <script src="js/pace.min.js"></script>
+  <script src="js/restablecerc.js"></script>
 <script language=JavaScript>
 	document.getElementById('loginForm').addEventListener('submit', function(event) 
 	{
@@ -146,7 +169,7 @@ if (token) {
     });
 });
 
-	        
+	  
 </script>
 
 </body>
