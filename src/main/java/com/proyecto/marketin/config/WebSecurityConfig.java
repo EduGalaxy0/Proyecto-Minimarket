@@ -35,7 +35,7 @@ public class WebSecurityConfig {
 							.disable())
 					.authorizeHttpRequests(authRequest -> {
 							authRequest.requestMatchers("/auth/**",
-									"/restablecerc/**",
+									"/enviarcorreo/**",
 	        						"/js/**",
 	        						"/v1/css/**",
 	        						"/css/**", "/flags/**","/images/**","/plugins/**","/fonts/**"

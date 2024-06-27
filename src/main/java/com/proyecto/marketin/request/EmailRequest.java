@@ -2,11 +2,11 @@ package com.proyecto.marketin.request;
 
 public class EmailRequest {
 	
-	private String mailFrom;
-	private String mailTo;
-	private String subject;
-	private String username;
-	private String codigo;
+	 String mailFrom;
+	 String mailTo;
+	 String subject;
+	 String username;
+	 String codigo;
 	
 	public String getMailFrom() {
 		return mailFrom;

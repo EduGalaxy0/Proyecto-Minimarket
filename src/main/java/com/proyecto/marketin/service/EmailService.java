@@ -28,18 +28,7 @@ public class EmailService {
         this.templateEngine = templateEngine;
     }
 
-    public void sendEmail(){
-
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("eduysting@hotmail.com");
-        message.setTo("eduysting@gmail.com");
-        message.setSubject("Pruebita");
-        message.setText("esto es el contenido del email");
-
-        javaMailSender.send(message);
-    }
-    
-    public void sendEmailTemplate(EmailRequest request) {
+    public void sendEmail(EmailRequest request) {
     	MimeMessage message = javaMailSender.createMimeMessage();
     	try {
     		MimeMessageHelper helper = new MimeMessageHelper(message, true);
